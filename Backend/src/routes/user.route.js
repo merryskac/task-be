@@ -13,6 +13,6 @@ userRouter.post("/register", register);
 userRouter.post("/login", login);
 userRouter.get("/test", verifyToken, testMiddleware);
 userRouter.delete("/logout", logout);
-userRouter.get('/profile', getUserProfile)
+userRouter.get('/profile', verifyToken,getUserProfile)
 
 export default userRouter;
