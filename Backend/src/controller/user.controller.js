@@ -99,6 +99,7 @@ const testMiddleware = (req, res) => {
 };
 
 const getUserProfile = (req, res) =>{
+  console.log(req.id)
   try{
     user.findAll({
       where:{
