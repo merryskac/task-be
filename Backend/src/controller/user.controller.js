@@ -142,7 +142,7 @@ const changePassword = async(req, res) =>{
       id: req.id
     }
   })
-
+  console.log("next step")
   const match = await bcyrpt.compare(
     oldPass,
     userExist[0].password
