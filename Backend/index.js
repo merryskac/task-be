@@ -14,6 +14,7 @@ app.use(cors(
     origin: ["http://localhost", "vercel.app"],
   }
   ));
+app.set("trust proxy", 1)
 app.use(cookieParser());
 app.use(taskRouter);
 app.use(userRouter);
