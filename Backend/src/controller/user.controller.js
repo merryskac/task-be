@@ -137,19 +137,24 @@ const changePassword = async(req, res) =>{
     return res.status(400).json({message: "Insert old pass"})
   }
 
-  const userExist = await user.findAll({
-    where:{
-      id: req.id
-    }
-  })
-  console.log("next step")
-  const match = await bcyrpt.compare(
-    oldPass,
-    userExist[0].password
-  );
-  if(!match){
-    return res.status(400).json({message: "wrong password!"})
-  }
+    const userExist = await user.findAll({
+      where:{
+        id: req.id
+      }
+    })
+
+    console.log(userExist)
+
+    console.log("next step")
+  
+    const match = await bcyrpt.compare(
+      oldPass,
+      userExist[0].password
+    );
+    if(!match){
+      return res.status(400).json({message: "wrong password!"})
+    
+  
   const hashedPass = bcyrpt.hashSync(newPass, salt)
 
   try{
