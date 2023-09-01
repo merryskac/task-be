@@ -107,7 +107,7 @@ const getUserProfile = (req, res) =>{
       },
       attributes:[
         'id',
-        'nama',
+        'name',
         'email',
         'name',
         'gender',
