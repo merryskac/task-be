@@ -15,6 +15,6 @@ userRouter.post("/login", login);
 userRouter.get("/test", verifyToken, testMiddleware);
 userRouter.delete("/logout", logout);
 userRouter.get('/profile', verifyToken,getUserProfile);
-userRouter.post("/changePassword", verifyToken,changePassword)
+userRouter.post("/changePassword", verifyToken, changePassword)
 
 export default userRouter;

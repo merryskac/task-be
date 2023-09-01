@@ -150,6 +150,7 @@ const changePassword = async(req, res) =>{
     oldPass,
     userExist[0].password
   );
+
   if(!match){
     return res.status(400).json({message: "wrong password!"})
   }
@@ -168,7 +169,7 @@ const changePassword = async(req, res) =>{
       }
     )
 
-    return res.json(200).json({
+    return res.status(200).json({
       message: "pass has changed"
     })
   }catch(err){
