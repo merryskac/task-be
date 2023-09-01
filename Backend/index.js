@@ -8,6 +8,18 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 const app = Express();
 app.use(Express.json());
+app.use(
+  session({
+    resave: false,
+    saveUnitialized: false,
+    secret: "session",
+    cookie: {
+      maxAge: 1000 * 60 * 60,
+      sameSite: "lax",
+      secure: false
+    }
+  })
+)
 app.use(cors(
   { 
     credentials: true, 
