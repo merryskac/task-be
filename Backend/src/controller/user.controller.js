@@ -102,7 +102,7 @@ const getUserProfile = (req, res) =>{
   try{
     user.findAll({
       where:{
-        user_id: req.id
+        id: req.id
       },
       attributes:[
         'id',
