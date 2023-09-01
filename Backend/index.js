@@ -8,6 +8,15 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 const app = Express();
 app.use(Express.json());
+
+app.use(cors(
+  { 
+    credentials: true, 
+    origin: ["http://localhost", "vercel.app"],
+  }
+  ));
+app.set("trust proxy", 1)
+app.use(cookieParser());
 app.use(
   session({
     resave: false,
@@ -20,14 +29,6 @@ app.use(
     }
   })
 )
-app.use(cors(
-  { 
-    credentials: true, 
-    origin: ["http://localhost", "vercel.app"],
-  }
-  ));
-app.set("trust proxy", 1)
-app.use(cookieParser());
 app.use(taskRouter);
 app.use(userRouter);
 
