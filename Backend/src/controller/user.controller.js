@@ -126,6 +126,7 @@ const getUserProfile = (req, res) =>{
 }
 
 const changePassword = async(req, res) =>{
+  const salt = bcyrpt.genSaltSync();
   const oldPass = req.body.oldPass
   const newPass = req.body.newPass
 
