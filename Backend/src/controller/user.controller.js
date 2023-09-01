@@ -44,9 +44,7 @@ const login = async (req, res) => {
       },
     });
 
-
     const { id, name, email } = userExist[0];
-
 
     const match = await bcyrpt.compare(
       req.body.password,
@@ -127,4 +125,44 @@ const getUserProfile = (req, res) =>{
   }
 }
 
-export { register, login, testMiddleware, logout, getUserProfile };
+const changePassword = async(req, res) =>{
+  const oldPass = req.body.oldPass
+  const newPass = req.body.newPass
+
+  const userExist = await user.findAll({
+    where:{
+      id: req.id
+    }
+  })
+
+  const match = await bcyrpt.compare(
+    oldPass,
+    userExist[0].password
+  );
+  if(!match){
+    return res.status(400).json({message: "wrong password!"})
+  }
+
+  const hashedPass = bcyrpt.hashSync(newPass, salt)
+
+  try{
+    await user.update(
+      {
+        password: hashedPass
+      },
+      {
+        where:{
+          id: req.id
+        }
+      }
+    )
+
+    return res.json(200).json({
+      message: "pass has changed"
+    })
+  }catch(err){
+    return req.status(500).json({message: err.message})
+  }
+}
+
+export { register, login, testMiddleware, logout, getUserProfile, changePassword };

@@ -80,7 +80,7 @@ export const updateTask = async (req, res) => {
 				},
 			}
 		);
-		res.status(200).json({ message: 'Task updated successfully' });
+		return res.status(200).json({ message: 'Task updated successfully' });
 	} catch (err) {
 		return res.status(400).json({ message: err.message });
 	}
