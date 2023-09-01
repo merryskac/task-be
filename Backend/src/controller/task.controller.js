@@ -87,6 +87,7 @@ export const updateTask = async (req, res) => {
 };
 
 export const deleteTask = async (req, res) => {
+	console.log(req.params.id)
 	try {
 		await Task.destroy({
 			trucante: true,
