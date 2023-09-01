@@ -168,7 +168,7 @@ const changePassword = async(req, res) =>{
       message: "pass has changed"
     })
   }catch(err){
-    return req.status(500).json({message: err.message})
+    return res.status(500).json({message: err.message})
   }
 }
 
