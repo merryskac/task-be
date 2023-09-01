@@ -150,7 +150,6 @@ const changePassword = async(req, res) =>{
   if(!match){
     return res.status(400).json({message: "wrong password!"})
   }
-
   const hashedPass = bcyrpt.hashSync(newPass, salt)
 
   try{
