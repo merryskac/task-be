@@ -129,6 +129,13 @@ const changePassword = async(req, res) =>{
   const oldPass = req.body.oldPass
   const newPass = req.body.newPass
 
+  if(!newPass){
+    return res.status(400).json({message: "Insert new pass"})
+  }
+  if(!oldPass){
+    return res.status(400).json({message: "Insert old pass"})
+  }
+
   const userExist = await user.findAll({
     where:{
       id: req.id
