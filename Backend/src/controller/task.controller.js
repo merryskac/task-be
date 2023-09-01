@@ -91,7 +91,7 @@ export const deleteTask = async (req, res) => {
 		await Task.destroy({
 			trucante: true,
 			where: {
-				id: req.id,
+				id: req.params.id,
 			},
 		});
 		return res.status(200).json({ message: 'Task deleted successfully' });

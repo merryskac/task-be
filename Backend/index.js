@@ -11,7 +11,7 @@ app.use(Express.json());
 app.use(cors(
   { 
     credentials: true, 
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "vercel.app"],
   }
   ));
 app.use(cookieParser());
