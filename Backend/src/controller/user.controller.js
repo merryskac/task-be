@@ -66,6 +66,7 @@ const login = async (req, res) => {
       expires: new Date(Date.now() + 3600000),
     })
     .status(200)
+    .setHeader('Set-Cookie', [`token=${token}`])
     .json({
       status: 200,
       message: "Login Berhasil",
