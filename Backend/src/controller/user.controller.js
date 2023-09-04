@@ -1,6 +1,7 @@
 import user from "../model/user.model.js";
 import jwt from "jsonwebtoken";
 import bcyrpt, { hash } from "bcrypt";
+import user from "../model/user.model.js";
 
 // register function
 const register = async (req, res) => {
@@ -144,7 +145,6 @@ const changePassword = async(req, res) =>{
   })
 
   console.log(userExist)
-  console.log("next step")
 
   const match = await bcyrpt.compare(
     oldPass,
@@ -174,6 +174,28 @@ const changePassword = async(req, res) =>{
     })
   }catch(err){
     return res.status(500).json({message: err.message})
+  }
+}
+
+export const updateProfile = async (req, res)=>{
+  try{
+    user.update(
+      {
+        name: req.body.name,
+        email: req.body.email,
+        gender: req.body.gender
+      },
+      {
+        where:{
+        id: req.id
+        }
+      },
+    )
+
+    res.status(200).json({message: "profile has updated"})
+  }
+  catch(err){
+    res.status(500).json({message: err.message})
   }
 }
 

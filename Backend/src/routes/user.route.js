@@ -6,6 +6,7 @@ import {
   logout,
   getUserProfile,
   changePassword,
+  updateProfile,
 } from "../controller/user.controller.js";
 import verifyToken from "../middleware/verifyToken.js";
 
@@ -16,5 +17,5 @@ userRouter.get("/test", verifyToken, testMiddleware);
 userRouter.delete("/logout", logout);
 userRouter.get('/profile', verifyToken,getUserProfile);
 userRouter.put("/changePassword", verifyToken, changePassword)
-
+userRouter.post('/profile', verifyToken, updateProfile)
 export default userRouter;
