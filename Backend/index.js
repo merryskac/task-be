@@ -41,7 +41,7 @@ app.set("trust proxy", 1)
 app.use(cookieParser());
 app.use(
   session({
-    resave: true,
+    resave: false,
     saveUnitialized: false,
     secret: "session",
     cookie: {
