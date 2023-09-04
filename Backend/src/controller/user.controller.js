@@ -1,7 +1,6 @@
 import user from "../model/user.model.js";
 import jwt from "jsonwebtoken";
 import bcyrpt, { hash } from "bcrypt";
-import user from "../model/user.model.js";
 
 // register function
 const register = async (req, res) => {
@@ -177,26 +176,26 @@ const changePassword = async(req, res) =>{
   }
 }
 
-// export const updateProfile = async (req, res)=>{
-//   try{
-//     await user.update(
-//       {
-//         name: req.body.name,
-//         email: req.body.email,
-//         gender: req.body.gender
-//       },
-//       {
-//         where:{
-//         id: req.id
-//         }
-//       },
-//     )
+export const updateProfile = async (req, res)=>{
+  try{
+    await user.update(
+      {
+        name: req.body.name,
+        email: req.body.email,
+        gender: req.body.gender
+      },
+      {
+        where:{
+        id: req.id
+        }
+      },
+    )
 
-//     return res.status(200).json({message: "profile has updated"})
-//   }
-//   catch(err){
-//     return res.status(500).json({message: err.message})
-//   }
-// }
+    return res.status(200).json({message: "profile has updated"})
+  }
+  catch(err){
+    return res.status(500).json({message: err.message})
+  }
+}
 
 export { register, login, testMiddleware, logout, getUserProfile, changePassword };
