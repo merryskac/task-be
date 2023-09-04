@@ -182,7 +182,8 @@ export const updateProfile = async (req, res)=>{
       {
         name: req.body.name,
         email: req.body.email,
-        gender: req.body.gender
+        gender: req.body.gender,
+        profile_img: req.body.profile_img
       },
       {
         where:{
