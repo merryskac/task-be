@@ -179,7 +179,7 @@ const changePassword = async(req, res) =>{
 
 export const updateProfile = async (req, res)=>{
   try{
-    user.update(
+    await user.update(
       {
         name: req.body.name,
         email: req.body.email,
@@ -192,10 +192,10 @@ export const updateProfile = async (req, res)=>{
       },
     )
 
-    res.status(200).json({message: "profile has updated"})
+    return res.status(200).json({message: "profile has updated"})
   }
   catch(err){
-    res.status(500).json({message: err.message})
+    return res.status(500).json({message: err.message})
   }
 }
 
