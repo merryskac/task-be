@@ -34,14 +34,14 @@ app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('profile_i
 app.use(cors(
   { 
     credentials: true, 
-    origin: ["http://localhost", "vercel.app"],
+    origin: "http://localhost:5000",
   }
   ));
 app.set("trust proxy", 1)
 app.use(cookieParser());
 app.use(
   session({
-    resave: false,
+    resave: true,
     saveUnitialized: false,
     secret: "session",
     cookie: {
@@ -54,7 +54,7 @@ app.use(
 app.use(taskRouter);
 app.use(userRouter);
 
-app.listen(4000, () => {
+app.listen(5000, () => {
   console.log("connected to server");
 });
 
