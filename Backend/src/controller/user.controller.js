@@ -177,13 +177,17 @@ const changePassword = async(req, res) =>{
 }
 
 export const updateProfile = async (req, res)=>{
+  let image;
+  if(req.file){
+    image = req.file.path
+  }
   try{
     await user.update(
       {
         name: req.body.name,
         email: req.body.email,
         gender: req.body.gender,
-        profile_img: req.body.profile_img
+        profile_img: image
       },
       {
         where:{

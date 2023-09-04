@@ -5,10 +5,31 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import multer from "multer";
 
 dotenv.config();
 const app = Express();
+
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb)=>{
+    cb(null, 'images')
+  },
+  filename: (req, file, cb)=>{
+    cb(null, new Date().getTime()+ '-' + file.originalname)
+  }
+})
+
+const fileFilter = (req, file, cb) =>{
+  if(file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg'){
+    cb(null, true);
+  }else{
+    cb(null, false)
+  }
+}
+
 app.use(Express.json());
+
+app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('profile_img'))
 
 app.use(cors(
   { 
