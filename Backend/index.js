@@ -34,7 +34,7 @@ app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('profile_i
 app.use(cors(
   { 
     credentials: true, 
-    origin: "http://localhost:5000",
+    origin: ["http://localhost", "vercel.app"],
   }
   ));
 app.set("trust proxy", 1)
